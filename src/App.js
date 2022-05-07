@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import "./styles.css";
+import React, { useState } from "react";
+import { DataMovie } from "./component/DataMovie";
+import movieliste from "./component/MovieListe";
+import AddMovie from "./component/AddMovie";
+import Search from "./component/search";
+function Mov() {
+  const [MovieListe, setMovieListe] = useState(DataMovie);
+  const addNewMovie = (newMovie) => {
+    setMovieListe([...MovieListe, newMovie]);
+  };
+  const [search, setSearch] = useState(""); 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Search  setSearch={setSearch} />
+      <AddMovie addNewMovie={addNewMovie} /> 
+      <MovieListe movieListe={movieliste} />
     </div>
   );
 }
 
-export default App;
+export default Mov;
+
